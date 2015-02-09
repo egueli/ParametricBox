@@ -13,10 +13,6 @@ nw = 0;
 nd = 0;
 nh = 0;
 
-// a number big enough to solve Z-fighting, but small enough to not alter
-// geometry.
-zf = 5;
-
 nw =floor((w+2*thickness)/tab); //tabs on w dimension
 nd =floor((d+2*thickness)/tab); //tabs on d dimension
 nh =floor((h+2*thickness)/tab); //tabs on height
@@ -44,31 +40,31 @@ DXF=false; // set to true to see the DXF projection, for a laser cutter for exam
 module case_bottom(){
 	difference(){
 		cube ([w+2*thickness,d+2*thickness,thickness], center =false);
-		for(x = [0:nw]){	
+		#for(x = [0:nw]){	
 			if (x%2==1) {
-				translate ([delta_w+x*tab, (thickness-zf)/2,thickness/2]) {
-					cube ([tab, thickness+zf, thickness+zf], center = true);
+				translate ([delta_w+x*tab, thickness/2,thickness/2]) {
+					cube ([tab, thickness, thickness], center = true);
 				}
 			}
 		}
-		for(x = [0:nd]){
+		*for(x = [0:nd]){
 			if (x%2==1) {
-				translate ([(thickness-zf)/2,delta_d+x*tab,thickness/2]) {
-					cube ([thickness+zf,tab,thickness+zf], center = true);
+				translate ([thickness/2,delta_d+x*tab,thickness/2]) {
+					cube ([thickness,tab,thickness], center = true);
 				}
 			}
 		}//for
-		for(x = [0:nw]){	
+		*for(x = [0:nw]){	
 			if (x%2==1) {
-				translate ([delta_w+x*tab, d+2*thickness-(thickness-zf)/2,thickness/2]) {
-					cube ([tab, thickness+zf, thickness+zf], center = true);
+				translate ([delta_w+x*tab, d+2*thickness-thickness/2,thickness/2]) {
+					cube ([tab, thickness, thickness], center = true);
 				}
 			}
 		}
-		for(x = [0:nd]){
+		*for(x = [0:nd]){
 			if (x%2==1) {
-				translate ([w+2*thickness-(thickness-zf)/2,delta_d+x*tab,thickness/2]) {
-					cube ([thickness+zf,tab,thickness+zf], center = true);
+				translate ([w+2*thickness-thickness/2,delta_d+x*tab,thickness/2]) {
+					cube ([thickness,tab,thickness], center = true);
 				}
 			}
 		}//for
