@@ -60,8 +60,8 @@ module case_bottom(){
 		}//for
 		for(x = [0:nw]){	
 			if (x%2==1) {
-				translate ([delta_w+x*tab, d+2*thickness-thickness/2,thickness/2]) {
-					cube ([tab, thickness, thickness], center = true);
+				translate ([delta_w+x*tab, d+2*thickness-(thickness-zf)/2,thickness/2]) {
+					cube ([tab, thickness+zf, thickness+zf], center = true);
 				}
 			}
 		}
