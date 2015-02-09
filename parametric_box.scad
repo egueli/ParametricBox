@@ -53,8 +53,8 @@ module case_bottom(){
 		}
 		for(x = [0:nd]){
 			if (x%2==1) {
-				translate ([thickness/2,delta_d+x*tab,thickness/2]) {
-					cube ([thickness,tab,thickness], center = true);
+				translate ([(thickness-zf)/2,delta_d+x*tab,thickness/2]) {
+					cube ([thickness+zf,tab,thickness+zf], center = true);
 				}
 			}
 		}//for
