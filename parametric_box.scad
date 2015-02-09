@@ -40,17 +40,33 @@ DXF=false; // set to true to see the DXF projection, for a laser cutter for exam
 module case_bottom(){
 	difference(){
 		cube ([w+2*thickness,d+2*thickness,thickness], center =false);
-		for(x = [0:nw]){	
-			if (x%2==1) translate ([delta_w+x*tab, thickness/2,thickness/2]) cube ([tab, thickness, thickness], center = true);
+		#for(x = [0:nw]){	
+			if (x%2==1) {
+				translate ([delta_w+x*tab, thickness/2,thickness/2]) {
+					cube ([tab, thickness, thickness], center = true);
+				}
+			}
 		}
-		for(x = [0:nd]){
-			if (x%2==1) translate ([thickness/2,delta_d+x*tab,thickness/2]) cube ([thickness,tab,thickness], center = true);
+		*for(x = [0:nd]){
+			if (x%2==1) {
+				translate ([thickness/2,delta_d+x*tab,thickness/2]) {
+					cube ([thickness,tab,thickness], center = true);
+				}
+			}
 		}//for
-		for(x = [0:nw]){	
-			if (x%2==1) translate ([delta_w+x*tab, d+2*thickness-thickness/2,thickness/2]) cube ([tab, thickness, thickness], center = true);
+		*for(x = [0:nw]){	
+			if (x%2==1) {
+				translate ([delta_w+x*tab, d+2*thickness-thickness/2,thickness/2]) {
+					cube ([tab, thickness, thickness], center = true);
+				}
+			}
 		}
-		for(x = [0:nd]){
-			if (x%2==1) translate ([w+2*thickness-thickness/2,delta_d+x*tab,thickness/2]) cube ([thickness,tab,thickness], center = true);
+		*for(x = [0:nd]){
+			if (x%2==1) {
+				translate ([w+2*thickness-thickness/2,delta_d+x*tab,thickness/2]) {
+					cube ([thickness,tab,thickness], center = true);
+				}
+			}
 		}//for
 	}//difference
 } 
