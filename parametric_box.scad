@@ -32,7 +32,7 @@ if (tab == 3.5){
 //****************************************
 // choose your options here***************
 with_top=true; //you may want an open case without lid, huh?
-in3D=false; // set to false to see projection
+in3D=true; // set to false to see projection
 DXF=false; // set to true to see the DXF projection, for a laser cutter for example
 //***************************************
 
@@ -40,28 +40,28 @@ DXF=false; // set to true to see the DXF projection, for a laser cutter for exam
 module case_bottom(){
 	difference(){
 		cube ([w+2*thickness,d+2*thickness,thickness], center =false);
-		#for(x = [0:nw]){	
+		for(x = [0:nw]){	
 			if (x%2==1) {
 				translate ([delta_w+x*tab, thickness/2,thickness/2]) {
 					cube ([tab, thickness, thickness], center = true);
 				}
 			}
 		}
-		*for(x = [0:nd]){
+		for(x = [0:nd]){
 			if (x%2==1) {
 				translate ([thickness/2,delta_d+x*tab,thickness/2]) {
 					cube ([thickness,tab,thickness], center = true);
 				}
 			}
 		}//for
-		*for(x = [0:nw]){	
+		for(x = [0:nw]){	
 			if (x%2==1) {
 				translate ([delta_w+x*tab, d+2*thickness-thickness/2,thickness/2]) {
 					cube ([tab, thickness, thickness], center = true);
 				}
 			}
 		}
-		*for(x = [0:nd]){
+		for(x = [0:nd]){
 			if (x%2==1) {
 				translate ([w+2*thickness-thickness/2,delta_d+x*tab,thickness/2]) {
 					cube ([thickness,tab,thickness], center = true);
@@ -128,6 +128,11 @@ module case_top(){
 	}//with top
 }
 
+module case_lower() {
+	translate([thickness,thickness,-thickness]) {
+		cube ([w,d,thickness], center =false);
+	}
+}
 
 // projection in flat 
 
@@ -149,6 +154,7 @@ if (in3D==true) {
 	color ("yellow", 0.5) side_3();
 	color ("yellow", 0.5) side_4();
 	if (with_top==true) color ("orange", 0.5) case_top();
+	color ("blue", 0.5) case_lower();
 }
  	else if (DXF==false){
 		decomp();
