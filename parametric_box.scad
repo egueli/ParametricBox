@@ -3,8 +3,8 @@
 //--for example for pcb dims
 
 thickness = 2;
-w = 40.0;
-d = 70.0;
+w = 40.0; // dimension along the X axis
+d = 70.0; // dimension along the Y axis
 h = 19.0; // box height
 tab = 7.0; // the tab size
 separation = 5.0; //2d presentation gap
