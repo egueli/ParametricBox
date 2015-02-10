@@ -32,7 +32,7 @@ if (tab == 3.5){
 //****************************************
 // choose your options here***************
 with_top=true; //you may want an open case without lid, huh?
-in3D=true; // set to false to see projection
+in3D=false; // set to false to see projection
 DXF=false; // set to true to see the DXF projection, for a laser cutter for example
 //***************************************
 
@@ -138,6 +138,7 @@ module case_lower() {
 
 module decomp(){
 	case_bottom();
+	translate([w+separation+2*thickness,-separation+thickness,thickness]) rotate(a=-90, v=[0,0,1]) case_lower();
 	translate ([0, -5, 0]) rotate(a=90, v=[1,0,0]) side_3();
 	translate ([-5, 0, 0]) rotate(a=-90, v=[0,1,0]) side_1();
 	translate([w+separation + 2*thickness,0, thickness]) rotate(a=90, v=[0,1,0]) translate([-(w+thickness),0,0]) side_2();
