@@ -9,6 +9,9 @@ h = 19.0; // box height
 tab = 7.0; // the tab size
 separation = 5.0; //2d presentation gap
 
+ow = w - 5.0;  // opening width, should be less than w
+oh = h - 5.0;  // opening height, should be less than h
+
 nw = 0;
 nd = 0;
 nh = 0;
@@ -99,9 +102,6 @@ module side_2(){//right
 		if (with_top == true) translate([0,0,h+thickness]) case_bottom();
 	}//difference
 } 
-
-ow = w - 5;
-oh = h - 5;
 
 module side_3(){ //front	
 	difference(){
