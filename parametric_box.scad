@@ -3,11 +3,14 @@
 //--for example for pcb dims
 
 thickness = 2;
-w = 40.0;
-d = 70.0;
+w = 40.0; // dimension along the X axis
+d = 70.0; // dimension along the Y axis
 h = 19.0; // box height
 tab = 7.0; // the tab size
 separation = 5.0; //2d presentation gap
+
+ow = w - 5.0;  // opening width, should be less than w
+oh = h - 5.0;  // opening height, should be less than h
 
 nw = 0;
 nd = 0;
@@ -100,10 +103,12 @@ module side_2(){//right
 	}//difference
 } 
 
-
 module side_3(){ //front	
 	difference(){
 		cube ([w+2*thickness,thickness,2*thickness+h], center =false);
+		translate([w/2+thickness,thickness/2,h-oh/2+3*thickness/2]) {
+			cube ([ow,thickness,oh+thickness], center=true);
+		}
 		side_1();
 		side_2();
 		case_bottom();
