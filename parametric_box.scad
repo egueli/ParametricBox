@@ -40,28 +40,28 @@ DXF=false; // set to true to see the DXF projection, for a laser cutter for exam
 module case_bottom(){
 	difference(){
 		cube ([w+2*thickness,d+2*thickness,thickness], center =false);
-		#for(x = [0:nw]){	
+		for(x = [0:nw]){	
 			if (x%2==1) {
 				translate ([delta_w+x*tab, thickness/2,thickness/2]) {
 					cube ([tab, thickness, thickness], center = true);
 				}
 			}
 		}
-		*for(x = [0:nd]){
+		for(x = [0:nd]){
 			if (x%2==1) {
 				translate ([thickness/2,delta_d+x*tab,thickness/2]) {
 					cube ([thickness,tab,thickness], center = true);
 				}
 			}
 		}//for
-		*for(x = [0:nw]){	
+		for(x = [0:nw]){	
 			if (x%2==1) {
 				translate ([delta_w+x*tab, d+2*thickness-thickness/2,thickness/2]) {
 					cube ([tab, thickness, thickness], center = true);
 				}
 			}
 		}
-		*for(x = [0:nd]){
+		for(x = [0:nd]){
 			if (x%2==1) {
 				translate ([w+2*thickness-thickness/2,delta_d+x*tab,thickness/2]) {
 					cube ([thickness,tab,thickness], center = true);
@@ -128,11 +128,17 @@ module case_top(){
 	}//with top
 }
 
+module case_lower() {
+	translate([thickness,thickness,-thickness]) {
+		cube ([w,d,thickness], center =false);
+	}
+}
 
 // projection in flat 
 
 module decomp(){
 	case_bottom();
+	translate([w+separation+2*thickness,-separation+thickness,thickness]) rotate(a=-90, v=[0,0,1]) case_lower();
 	translate ([0, -5, 0]) rotate(a=90, v=[1,0,0]) side_3();
 	translate ([-5, 0, 0]) rotate(a=-90, v=[0,1,0]) side_1();
 	translate([w+separation + 2*thickness,0, thickness]) rotate(a=90, v=[0,1,0]) translate([-(w+thickness),0,0]) side_2();
@@ -149,6 +155,7 @@ if (in3D==true) {
 	color ("yellow", 0.5) side_3();
 	color ("yellow", 0.5) side_4();
 	if (with_top==true) color ("orange", 0.5) case_top();
+	color ("blue", 0.5) case_lower();
 }
  	else if (DXF==false){
 		decomp();
