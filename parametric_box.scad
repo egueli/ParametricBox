@@ -100,10 +100,15 @@ module side_2(){//right
 	}//difference
 } 
 
+ow = w - 5;
+oh = h - 5;
 
 module side_3(){ //front	
 	difference(){
 		cube ([w+2*thickness,thickness,2*thickness+h], center =false);
+		translate([w/2+thickness,thickness/2,h-oh/2+3*thickness/2]) {
+			cube ([ow,thickness,oh+thickness], center=true);
+		}
 		side_1();
 		side_2();
 		case_bottom();
